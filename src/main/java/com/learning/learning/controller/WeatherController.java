@@ -1,9 +1,9 @@
 package com.learning.learning.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,18 +25,18 @@ private LearningService service;
         this.service = service;
     }
 
-  @RequestMapping(value = "/weather", method = RequestMethod.GET)
+  @GetMapping(value = "/weather")
   public @ResponseBody DataDTO createWeather(@RequestParam(value = "provincia", required = false) int provincia , 
   @RequestParam(value = "localidad", required = false) int localidad) throws Exception {
       return  WeatherMapper.map(service.predicePlay(provincia,localidad));
   }
   
-  @RequestMapping(value = "/weathers", method = RequestMethod.GET)
+  @GetMapping(value = "/weathers")
   public @ResponseBody Iterable<Weather> getAllWeather() {
       return this.weatherRepository.findAll();
   }
   
-  @RequestMapping(value = "/weather/{id}", method = RequestMethod.PUT)
+  @PutMapping(value = "/weather/{id}")
   public @ResponseBody DataDTO updateWeather(@PathVariable("id") int weatherId ,@RequestBody DataDTO weather) throws Exception {
       return  WeatherMapper.map(service.updateWeather(Weather.builder().id(weatherId).action(weather.getAction()).build()));
   }

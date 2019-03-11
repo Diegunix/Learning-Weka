@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @JsonAutoDetect
 public class ObjectDataAemet {
-    
+
     private String value;
     private String periodo;
     private String descripcion;

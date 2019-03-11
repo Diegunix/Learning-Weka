@@ -35,9 +35,9 @@ public class LearningService {
     private String user;
     @Value("${spring.datasource.password}")
     private String pass;
-    
-    private final String QUERY ="SELECT  id, orto, ocaso, humedad_relativa, sens_termica, temperatura, prob_nieve, nieve, "
-                              + "prob_tormenta, prob_precipitacion, precipitacion, estado_cielo, viento, action FROM weather";
+
+    private static final String QUERY = "SELECT  id, orto, ocaso, humedad_relativa, sens_termica, temperatura, prob_nieve, nieve, "
+            + "prob_tormenta, prob_precipitacion, precipitacion, estado_cielo, viento, action FROM weather";
 
     private WeatherRepository weatherRepository;
     private OpenDataService dataService;
@@ -47,7 +47,7 @@ public class LearningService {
         this.dataService = dataService;
     }
 
-    public Weather updateWeather(Weather data) throws Exception {
+    public Weather updateWeather(Weather data) {
         Optional<Weather> weather = weatherRepository.findById(data.getId());
         Weather dataWeather;
         if (weather.isPresent()) {
@@ -82,7 +82,7 @@ public class LearningService {
 
         log.info("Resultado de clasificar la nueva instancia: " + result);
 
-        dataWeather.setAction(result == 0);
+        dataWeather.setAction(result != 0);
 
         addStatistis(instances);
 
@@ -94,7 +94,7 @@ public class LearningService {
         Evaluation treeEvaluation = new Evaluation(instances);
         int numFolds = instances.size() / 3;
         Random random = new Random(1);
-        treeEvaluation.crossValidateModel(treeClassifier, instances, numFolds, random, new Object[] {});
+        treeEvaluation.crossValidateModel(treeClassifier, instances, numFolds, random);
         log.info(treeEvaluation.toSummaryString());
         log.info(treeEvaluation.toMatrixString());
     }

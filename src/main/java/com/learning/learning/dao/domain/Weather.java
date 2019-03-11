@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -26,18 +25,16 @@ import lombok.NoArgsConstructor;
 @Data
 public class Weather {
 
-    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    
+
     @ManyToOne
-    @JoinColumns({
-        @JoinColumn(name="id_provincia", referencedColumnName="id_provincia"),
-        @JoinColumn(name="id_localidad", referencedColumnName="id")
-    })
+    @JoinColumn(name = "id_provincia", referencedColumnName = "id_provincia")
+    @JoinColumn(name = "id_localidad", referencedColumnName = "id")
     private Localidad localidad;
-    @Column @NotNull
+    @Column
+    @NotNull
     private LocalDateTime fecha;
     @Column(nullable = true)
     private String orto;

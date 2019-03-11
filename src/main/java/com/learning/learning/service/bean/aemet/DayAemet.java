@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @JsonAutoDetect
 public class DayAemet {
-    
-    private List<PredictionAemet> dia; 
+
+    private List<PredictionAemet> dia;
 
 }
