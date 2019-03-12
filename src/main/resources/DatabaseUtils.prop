@@ -1,3 +1,6 @@
 jdbcDriver=org.postgresql.Driver
-jdbcURL=jdbc:postgresql://ec2-54-228-252-67.eu-west-1.compute.amazonaws.com:5432/d97fpttvibhu0l
 INT=5
+numeric=6
+varchar=0
+int4=5
+bool=0

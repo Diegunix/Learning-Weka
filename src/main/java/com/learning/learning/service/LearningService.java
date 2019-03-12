@@ -35,9 +35,11 @@ public class LearningService {
     private String user;
     @Value("${spring.datasource.password}")
     private String pass;
-
-    private static final String QUERY = "SELECT  id, orto, ocaso, humedad_relativa, sens_termica, temperatura, prob_nieve, nieve, "
-            + "prob_tormenta, prob_precipitacion, precipitacion, estado_cielo, viento, action FROM weather";
+    @Value("${spring.datasource.url}")
+    private String database;
+    
+    private static final String QUERY = "SELECT  cast(id as numeric), orto, ocaso, humedad_relativa, sens_termica, temperatura, prob_nieve, nieve, "
+            + "prob_tormenta, prob_precipitacion, precipitacion, estado_cielo, viento, action FROM db.weather";
 
     private WeatherRepository weatherRepository;
     private OpenDataService dataService;
@@ -127,6 +129,7 @@ public class LearningService {
         File file = fileUtils.getFile("DatabaseUtils.prop");
         InstanceQuery query = new InstanceQuery();
         query.setCustomPropsFile(file);
+        query.setDatabaseURL(database);
         query.setUsername(user);
         query.setPassword(pass);
         query.setQuery(QUERY);
