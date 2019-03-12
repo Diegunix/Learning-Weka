@@ -126,9 +126,11 @@ public class LearningService {
 
     private Instances getQuery() throws Exception {
         FileUtils fileUtils = new FileUtils();
-        File file = fileUtils.getFile("DatabaseUtils.prop");
+        File file = fileUtils.getFile("DatabaseUtils.props");
         InstanceQuery query = new InstanceQuery();
         query.setCustomPropsFile(file);
+        log.info(file.getAbsolutePath());
+        log.info(file.getParent());
         query.setDatabaseURL(database);
         query.setUsername(user);
         query.setPassword(pass);

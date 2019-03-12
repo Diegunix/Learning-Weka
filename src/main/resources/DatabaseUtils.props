@@ -1,0 +1,6 @@
+jdbcDriver=org.postgresql.Driver
+INT=5
+numeric=6
+varchar=0
+int4=5
+bool=0
