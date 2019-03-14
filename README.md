@@ -1,6 +1,8 @@
 # learning-application
 ## Spring Boot, Hibernate, JPA, Mysql, Weka, Gson, OkHttp.
 
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/Diegunix/Learning-Weka.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Diegunix/Learning-Weka/alerts/)
+
 ### Objetivo
 En este ejemplo se ha construido un pequeño proyecto de machine learning que dependiendo de unos datos climáticos calcula si se puede hacer una acción o no.
 Para esto hay que lanzar una petición get sobre weather con codigos de una provincia y de una localidad.
