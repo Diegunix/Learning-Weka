@@ -9,9 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class DataDTO {
+public class AddFormDTO {
     
-    Long id;
-    Boolean action;
+    
+    Long provincia;
+    Long localidad;
 
 }

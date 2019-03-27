@@ -13,6 +13,7 @@ public class WeatherMapper {
         DataDTO dto = null;
         if (bean != null) {
             dto = new DataDTO();
+            dto.setId(bean.getId());
             dto.setAction(bean.getAction());
         }
         return dto;
