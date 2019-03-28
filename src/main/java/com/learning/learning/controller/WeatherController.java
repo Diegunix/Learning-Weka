@@ -2,6 +2,10 @@ package com.learning.learning.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -12,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.learning.learning.controller.dto.DataDTO;
 import com.learning.learning.controller.dto.mappers.WeatherMapper;
+import com.learning.learning.controller.dto.pageable.PageDTO;
+import com.learning.learning.controller.dto.pageable.PageableDTO;
 import com.learning.learning.dao.domain.Localidad;
 import com.learning.learning.dao.domain.Provincia;
 import com.learning.learning.dao.domain.Weather;
@@ -36,8 +42,10 @@ public class WeatherController {
     }
 
     @GetMapping(value = "/weathers")
-    public @ResponseBody Iterable<Weather> getAllWeather() {
-        return this.utilService.getWeather();
+    public @ResponseBody PageableDTO<Weather> getAllWeather(@RequestParam("page") PageDTO page) {
+        Pageable pageable = PageRequest.of(page.getPageNumber(), page.getPageSize(), Sort.by(Sort.Direction.ASC,"id"));
+        Page<Weather> pageWeather = utilService.getWeather(pageable);
+        return new PageableDTO<>(pageWeather, pageWeather.getContent());
     }
 
     @PutMapping(value = "/weather/{id}")

@@ -1,5 +1,8 @@
 package com.learning.learning.controller;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,7 +32,8 @@ public class NavController {
     @GetMapping(value = "/listar")
     public ModelAndView listar() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("weathers", this.utilService.getWeather());
+        Pageable pageable = PageRequest.of(0, 20, Sort.by(Sort.Direction.DESC,"id"));
+        mav.addObject("weathers", this.utilService.getWeather(pageable));
         mav.setViewName("lista");
         return mav;
     }
@@ -55,8 +59,7 @@ public class NavController {
     public ModelAndView actualizar(@PathVariable("id") Long id, @RequestParam("action") Boolean action) {
         WeatherMapper.map(learningService.updateWeather(Weather.builder().id(id).action(action).build()));
         ModelAndView mav = new ModelAndView();
-        mav.addObject("weathers", this.utilService.getWeather());
-        mav.setViewName("lista");
+        mav.setViewName("index");
         return mav;
     }
 

@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -42,9 +44,11 @@ public class UtilService {
         }).collect(Collectors.toList());
     }
 
-    public List<Weather> getWeather() {
+    public Page<Weather> getWeather(Pageable pageable) {
         Sort sortById = new Sort(Sort.Direction.ASC, "id");
-        return weatherRepository.findAll(sortById);
+  
+        
+        return weatherRepository.findAll(pageable);
     }
     
     public Weather findWeatherById(Long id) {
