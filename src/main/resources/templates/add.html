@@ -18,20 +18,21 @@
 
 </head>
 <body>
-    <script th:inline="javascript">
-					/*[+
-					    $(function() {
-					        $(document).ajaxSuccess(function(){
-					            alert("AJAX request successfully completed" );
-					          });
-					        $("#localidad").load('/refreshLocalidad', $("#provincia").serialize());
-					        $('#provincia').on('change', function() {
-					            $("#localidad").load('/refreshLocalidad', $("#provincia").serialize());
-					        });
-					    });
-					+]*/
-				</script>
-
+<script type="text/javascript">
+$(function(){
+    var fillSecondary = function(){
+        var selected = $('#provincia').val();
+        $('#localidad').empty();
+        $.getJSON("/weather/provincia/"+selected+"/localidades",null,function(data){
+           data.forEach(function(element,index){
+              $('#localidad').append('<option value="'+element.id+'">'+element.descripcion+'</option>');
+           });
+        });
+    }
+    $('#provincia').change(fillSecondary);
+    fillSecondary();
+});
+</script>
     <div class="card-header text-center">
         <div class="container-fluid row">
         <div class="mx-auto">
@@ -43,7 +44,7 @@
         </div>
     </div>
     <div class="card-body bg-info">
-        <form class="form-horizontal" action="#" th:action="@{/weather}" th:object="${addForm}"
+        <form class="form-horizontal" action="#" th:action="@{/createWeather}" th:object="${addForm}"
             method="get">
        
             <div class="form-group col-md-4 mx-auto">

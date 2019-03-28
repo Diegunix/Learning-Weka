@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -29,8 +30,8 @@ public class OpenDataService {
     private String apikey;
 
     private static final String URL = "https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/horaria/";
-
     private static final String FORMAT_NUM = "%%0%dd";
+    private static final String ZONE_HOUR = "+1";
 
     private final DateTimeFormatter f = DateTimeFormatter.ofPattern("HH");
 
@@ -57,11 +58,9 @@ public class OpenDataService {
 
     private Weather parseDay(PredictionAemet dia) {
         Weather result = new Weather();
-
         result.setOcaso(dia.getOcaso());
         result.setOrto(dia.getOrto());
-        result.setFecha(LocalDateTime.now());
-
+        result.setFecha(LocalDateTime.now(ZoneId.of(ZONE_HOUR)));
         result.setEstadoCielo(getDataCielo(dia.getEstadoCielo(), result.getFecha()));
         result.setHumedadRelativa(getData(dia.getHumedadRelativa(), result.getFecha()));
         result.setNieve(getData(dia.getNieve(), result.getFecha()));
@@ -72,7 +71,6 @@ public class OpenDataService {
         result.setSensTermica(getData(dia.getSensTermica(), result.getFecha()));
         result.setTemperatura(getData(dia.getTemperatura(), result.getFecha()));
         result.setViento(getData(dia.getVientoAndRachaMax(), result.getFecha()));
-
         return result;
     }
 
@@ -89,7 +87,6 @@ public class OpenDataService {
         for (ObjectDataAemet dataAemet : data) {
             String start = dataAemet.getPeriodo().substring(0, 2);
             String end = dataAemet.getPeriodo().substring(2, 4);
-
             if (Integer.parseInt(fecha.format(f)) >= Integer.parseInt(start) && Integer.parseInt(fecha.format(f)) < Integer.parseInt(end)) {
                 return Integer.parseInt(dataAemet.getValue());
             }
@@ -109,7 +106,6 @@ public class OpenDataService {
     private String doRequest(String url) throws IOException {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url(url).get().addHeader("cache-control", "no-cache").build();
-
         Response response = client.newCall(request).execute();
         return new String(response.body().string().getBytes(StandardCharsets.UTF_8));
     }
