@@ -48,7 +48,7 @@ public class OpenDataService {
         for (ResponsePredictionAemet data : dataWeather) {
             for (PredictionAemet dia : data.getPrediccion().getDia()) {
                 LocalDate date = LocalDate.parse(dia.getFecha());
-                if (date.equals(LocalDate.now())) {
+                if (date.equals(LocalDate.now(ZoneId.of(ZONE_HOUR)))) {
                     return parseDay(dia);
                 }
             }
