@@ -1,6 +1,7 @@
 package com.learning.learning.service;
 
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Random;
 
@@ -38,7 +39,7 @@ public class LearningService {
     @Value("${spring.datasource.url}")
     private String database;
     
-    private static final String QUERY = "SELECT  cast(id as numeric), orto, ocaso, humedad_relativa, sens_termica, temperatura, prob_nieve, nieve, "
+    private static final String QUERY = "SELECT  cast(id as numeric), to_char(fecha, 'HH24:MI') hora, orto, ocaso, humedad_relativa, sens_termica, temperatura, prob_nieve, nieve, "
             + "prob_tormenta, prob_precipitacion, precipitacion, estado_cielo, viento, action FROM db.weather";
 
     private WeatherRepository weatherRepository;
@@ -107,21 +108,26 @@ public class LearningService {
         String[] options = { "-C", "1-2" };
         nominalToBinary.setOptions(options);
         Instances newInstances = Filter.useFilter(instances, nominalToBinary);
-        Instance instance = new DenseInstance(12);
+        Instance instance = new DenseInstance(13);
         instance.setDataset(newInstances);
-        instance.setValue(0, dataWeather.getOrto());
-        instance.setValue(1, dataWeather.getOcaso());
-        instance.setValue(2, dataWeather.getHumedadRelativa());
-        instance.setValue(3, dataWeather.getSensTermica());
-        instance.setValue(4, dataWeather.getTemperatura());
-        instance.setValue(5, dataWeather.getProbNieve());
-        instance.setValue(6, dataWeather.getNieve());
-        instance.setValue(7, dataWeather.getProbTormenta());
-        instance.setValue(8, dataWeather.getProbPrecipitacion());
-        instance.setValue(9, dataWeather.getPrecipitacion());
-        instance.setValue(10, dataWeather.getEstadoCielo());
-        instance.setValue(11, dataWeather.getViento());
+        instance.setValue(0, getTime(dataWeather.getFecha()));
+        instance.setValue(1, dataWeather.getOrto());
+        instance.setValue(2, dataWeather.getOcaso());
+        instance.setValue(3, dataWeather.getHumedadRelativa());
+        instance.setValue(4, dataWeather.getSensTermica());
+        instance.setValue(5, dataWeather.getTemperatura());
+        instance.setValue(6, dataWeather.getProbNieve());
+        instance.setValue(7, dataWeather.getNieve());
+        instance.setValue(8, dataWeather.getProbTormenta());
+        instance.setValue(9, dataWeather.getProbPrecipitacion());
+        instance.setValue(10, dataWeather.getPrecipitacion());
+        instance.setValue(11, dataWeather.getEstadoCielo());
+        instance.setValue(12, dataWeather.getViento());
         return instance;
+    }
+
+    private String getTime(LocalDateTime fecha) {
+        return fecha.getHour()+":"+fecha.getMinute();
     }
 
     private Instances getQuery() throws Exception {
@@ -129,8 +135,6 @@ public class LearningService {
         File file = fileUtils.getFile("DatabaseUtils.props");
         InstanceQuery query = new InstanceQuery();
         query.setCustomPropsFile(file);
-        log.info(file.getAbsolutePath());
-        log.info(file.getParent());
         query.setDatabaseURL(database);
         query.setUsername(user);
         query.setPassword(pass);

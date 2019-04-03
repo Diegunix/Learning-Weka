@@ -31,7 +31,7 @@ public class OpenDataService {
 
     private static final String URL = "https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/horaria/";
     private static final String FORMAT_NUM = "%%0%dd";
-    private static final String ZONE_HOUR = "+1";
+    private static final String ZONE_HOUR = "Europe/Madrid";
 
     private final DateTimeFormatter f = DateTimeFormatter.ofPattern("HH");
 
@@ -77,7 +77,8 @@ public class OpenDataService {
     private int getData(List<ObjectDataAemet> data, LocalDateTime fecha) {
         for (ObjectDataAemet dataAemet : data) {
             if (dataAemet.getPeriodo().equals(fecha.format(f)) && dataAemet.getValue() != null) {
-                return Integer.parseInt(dataAemet.getValue());
+                double d = Double.parseDouble(dataAemet.getValue());
+                return (int) d;
             }
         }
         return 0;
