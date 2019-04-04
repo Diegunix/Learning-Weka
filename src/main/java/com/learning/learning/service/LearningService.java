@@ -105,7 +105,7 @@ public class LearningService {
     private Instance getInstance(Instances instances, Weather dataWeather) throws Exception {
         NominalToString nominalToBinary = new NominalToString();
         nominalToBinary.setInputFormat(instances);
-        String[] options = { "-C", "1-2" };
+        String[] options = { "-C", "1-2-3" };
         nominalToBinary.setOptions(options);
         Instances newInstances = Filter.useFilter(instances, nominalToBinary);
         Instance instance = new DenseInstance(13);
