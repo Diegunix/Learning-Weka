@@ -77,8 +77,12 @@ public class OpenDataService {
     private int getData(List<ObjectDataAemet> data, LocalDateTime fecha) {
         for (ObjectDataAemet dataAemet : data) {
             if (dataAemet.getPeriodo().equals(fecha.format(f)) && dataAemet.getValue() != null) {
+              try {
                 double d = Double.parseDouble(dataAemet.getValue());
                 return (int) d;
+              } catch (NumberFormatException | NullPointerException nfe) {
+                  return 0;
+              }
             }
         }
         return 0;
