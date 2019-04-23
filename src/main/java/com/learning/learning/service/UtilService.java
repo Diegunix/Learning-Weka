@@ -9,7 +9,6 @@ import javax.persistence.EntityNotFoundException;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.learning.learning.dao.domain.Localidad;
@@ -45,12 +44,9 @@ public class UtilService {
     }
 
     public Page<Weather> getWeather(Pageable pageable) {
-        Sort sortById = new Sort(Sort.Direction.ASC, "id");
-  
-        
         return weatherRepository.findAll(pageable);
     }
-    
+
     public Weather findWeatherById(Long id) {
         Optional<Weather> optWeather = weatherRepository.findById(id);
         if (optWeather.isPresent()) {
@@ -58,5 +54,5 @@ public class UtilService {
         }
         throw new EntityNotFoundException();
     }
-    
+
 }
