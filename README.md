@@ -1,7 +1,11 @@
 # learning-application
-## Spring Boot, Hibernate, JPA, Mysql, Weka, Gson, OkHttp.
+## Spring Boot, Hibernate, JPA, Mysql, Weka, Gson, OkHttp, Swagger.
 
+[![Build Status](https://travis-ci.org/Diegunix/Learning-Weka.svg?branch=master)](https://travis-ci.org/Diegunix/Learning-Weka)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/Diegunix/Learning-Weka.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Diegunix/Learning-Weka/alerts/)
+[![codecov](https://codecov.io/gh/Diegunix/Learning-Weka/branch/master/graph/badge.svg)](https://codecov.io/gh/Diegunix/Learning-Weka)
+
+
 
 ### Objetivo
 En este ejemplo se ha construido un pequeño proyecto de machine learning que dependiendo de unos datos climáticos calcula si se puede hacer una acción o no.
