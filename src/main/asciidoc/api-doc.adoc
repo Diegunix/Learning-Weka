@@ -1,0 +1,100 @@
+= Momit API Service Guide
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+[introduction]
+= Introduction
+API-service is a RESTful microservice for management Momit devices.
+
+[[overview]]
+= Overview
+[[overview-http-verbs]]
+== HTTP verbs
+Person-service tries to adhere as closely as possible to standard HTTP and REST conventions in its use of HTTP verbs.
+|===
+| Verb | Usage
+| `OPTIONS`
+| Used to list method of resource
+| `GET`
+| Used to retrieve a resource
+| `POST`
+| Used to create a new resource
+| `PUT`
+| Used to update an existing resource, full updates only
+| `DELETE`
+| Used to delete an existing resource
+|===
+[[overview-http-status-codes]]
+== HTTP status codes
+Person-service tries to adhere as closely as possible to standard HTTP and REST conventions in its use of HTTP status codes.
+|===
+| Status code | Usage
+| `200 OK`
+| Standard response for successful HTTP requests.
+| The actual response will depend on the request method used.
+| In a GET request, the response will contain an entity corresponding to the requested resource.
+| In a POST request, the response will contain an entity describing or containing the result of the action.
+| `201 Created`
+| The request has been fulfilled and resulted in a new resource being created.
+| `204 No Content`
+| The server successfully processed the request, but is not returning any content.
+| `400 Bad Request`
+| The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).
+| `404 Not Found`
+| The requested resource could not be found but may be available again in the future. Subsequent requests by the client are permissible.
+|===
+[[resources]]
+
+= Resources
+[[resources-provincias]]
+== Provincias
+The Provincias resource is used to list provinces.
+
+=== Retrieve all provinces
+
+Example of curl command:
+
+include::{snippets}/weather-controller-rest-docs-test/get-provincias/curl-request.adoc[]
+
+Example of http request:
+
+include::{snippets}/weather-controller-rest-docs-test/get-provincias/http-request.adoc[]
+
+Example of http response:
+
+include::{snippets}/weather-controller-rest-docs-test/get-provincias/http-response.adoc[]
+
+Response fields:
+
+include::{snippets}/weather-controller-rest-docs-test/get-provincias/response-fields.adoc[]
+
+[[resources-localidad]]
+== Localidad
+The Localidad resource is used to list localidades.
+
+=== Retrieve all localidades for provincia
+
+Example of curl command:
+
+include::{snippets}/weather-controller-rest-docs-test/get-localidades/curl-request.adoc[]
+
+Request parameters:
+
+include::{snippets}/weather-controller-rest-docs-test/get-localidades/request-parameters.adoc[]
+
+Example of http request:
+
+include::{snippets}/weather-controller-rest-docs-test/get-localidades/http-request.adoc[]
+
+Example of http response:
+
+include::{snippets}/weather-controller-rest-docs-test/get-localidades/http-response.adoc[]
+
+Response fields:
+
+include::{snippets}/weather-controller-rest-docs-test/get-localidades/response-fields.adoc[]
+
