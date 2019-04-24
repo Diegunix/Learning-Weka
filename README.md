@@ -4,8 +4,9 @@
 [![Build Status](https://travis-ci.org/Diegunix/Learning-Weka.svg?branch=master)](https://travis-ci.org/Diegunix/Learning-Weka)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/Diegunix/Learning-Weka.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Diegunix/Learning-Weka/alerts/)
 [![codecov](https://codecov.io/gh/Diegunix/Learning-Weka/branch/master/graph/badge.svg)](https://codecov.io/gh/Diegunix/Learning-Weka)
-
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Diegunix_Learning-Weka&metric=alert_status)](https://sonarcloud.io/dashboard?id=Diegunix_Learning-Weka)
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://github.com/Diegunix/Learning-Weka/blob/master/LICENSE)
+[![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](https://app-diego-learning.herokuapp.com/api-doc.html)
 
 ### Objetivo
 En este ejemplo se ha construido un pequeño proyecto de machine learning que dependiendo de unos datos climáticos calcula si se puede hacer una acción o no.
