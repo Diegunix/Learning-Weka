@@ -1,4 +1,4 @@
-= Momit API Service Guide
+= BikeLearning API Service Guide
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
@@ -8,7 +8,7 @@
 
 [introduction]
 = Introduction
-API-service is a RESTful microservice for management Momit devices.
+API-service is a RESTful microservice for management BikeLearning devices.
 
 [[overview]]
 = Overview
@@ -84,7 +84,7 @@ include::{snippets}/weather-controller-rest-docs-test/get-localidades/curl-reque
 
 Request parameters:
 
-include::{snippets}/weather-controller-rest-docs-test/get-localidades/request-parameters.adoc[]
+include::{snippets}/weather-controller-rest-docs-test/get-localidades/path-parameters.adoc[]
 
 Example of http request:
 

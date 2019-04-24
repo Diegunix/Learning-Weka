@@ -74,7 +74,7 @@ public class WeatherControllerRestDocsTest {
         mockMvc = MockMvcBuilders.standaloneSetup(controller)
                 .alwaysDo(MockMvcRestDocumentation.document("{class-name}/{method-name}", Preprocessors.preprocessRequest()))
                 .apply(MockMvcRestDocumentation.documentationConfiguration(this.restDocumentation).uris().withScheme("https")
-                        .withHost("app-diego-learning.herokuapp.com").and().snippets()
+                        .withHost("app-diego-learning.herokuapp.com").withPort(443).and().snippets()
                         .withDefaults(CliDocumentation.curlRequest(), HttpDocumentation.httpRequest(), HttpDocumentation.httpResponse()))
                 .build();
     }
