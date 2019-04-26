@@ -35,7 +35,7 @@
                     <th>Provincia</th>
                     <th>Localidad</th>
                     <th>Fecha</th>
-                    <th>Action</th>
+                    <th>Resultado</th>
                     <th></th>
                 </tr>
             </thead>
@@ -46,8 +46,10 @@
                     <td th:text="${weather.localidad.descripcion}"></td>
                     <td th:text="${weather.fecha}"></td>
                     <td th:text="${weather.action}"></td>
-                    <td><a th:href="@{actualizar/{id}(id=${weather.id})}" th:text="'Actualizar'"
-                        class="btn btn-outline-danger"></a></td>
+                    <td class="text-center"><a th:href="@{actualizar/{id}(id=${weather.id})}" th:text="'Actualizar'"
+                        class="btn btn-outline-danger"></a> 
+                        <a th:href="@{detalle/{id}(id=${weather.id})}"
+                        th:text="'Detalle'" class="btn btn-outline-primary"></a></td>
                 </tr>
             </tbody>
             <tfoot>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Bike Learning - Update</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+    <div class="card-header text-center">
+        <div class="container-fluid row">
+            <div class="mx-auto">
+                <h3>Update Prediction</h3>
+            </div>
+            <div class="text-right">
+                <a href="/index" class="btn btn-dark btn-lg"><i class="fab fa-fort-awesome"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body bg-info">
+        <form action="#" th:action="@{/weather/{id}(id=${id})}" th:object="${weather}" method="get">
+            <div>
+                <div class="form-group col-md-4 mx-auto">
+                    <label for="fecha" class="badge badge-pill badge-warning" style="font-size: 1em; width: 10rem;">Fecha</label>
+                    <input type="text" th:field="*{fecha}" class="form-control" id="fecha" placeholder="Fecha" readonly>
+                </div>
+                <div class="form-group col-md-4 mx-auto">
+                    <label for="provincia" class="badge badge-pill badge-warning" style="font-size: 1em; width: 10rem;">Provincia</label>
+                    <input type="text" th:field="*{localidad.provincia.descripcion}" class="form-control" id="provincia"
+                        placeholder="Provincia" readonly>
+                </div>
+                <div class="form-group col-md-4 mx-auto">
+                    <label for="localidad" class="badge badge-pill badge-warning" style="font-size: 1em; width: 10rem;">Localidad</label>
+                    <input type="text" th:field="*{localidad.descripcion}" class="form-control" id="localidad"
+                        placeholder="Localidad" readonly>
+                </div>
+                <div class="form-group col-md-4 mx-auto">
+                    <label for="localidad" class="badge badge-pill badge-warning" style="font-size: 1em; width: 10rem;">Resultado</label>
+                    <input type="text" th:field="*{action}" class="form-control" id="localidad" placeholder="Localidad"
+                        readonly>
+                </div>
+                <div class="form-group col-md-4 mx-auto">
+                <label for="localidad" class="badge badge-pill badge-warning" style="font-size: 1em; width: 10rem;">Detalles</label>
+                </div>
+                <div class="form-group col-md-8 mx-auto">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr class="table-warning">
+                                <th class="text-center">Amanecer</th>
+                                <th class="text-center">Atardecer</th>
+                                <th class="text-center">Humedad</th>
+                                <th class="text-center">Sens.Térmica</th>
+                                <th class="text-center">Temperatura</th>
+                                <th class="text-center">Prob.Nieve</th>
+                                <th class="text-center">Nieve</th>
+                                <th class="text-center">Prob.Tormenta</th>
+                                <th class="text-center">Prob.Precipitación</th>
+                                <th class="text-center">Precipitación</th>
+                                <th class="text-center">Estado Cielo</th>
+                                <th class="text-center">Viento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:class="${weather.action} ? 'table-success' : 'table-danger'">
+                                <td th:text="${weather.orto}"></td>
+                                <td th:text="${weather.ocaso}"></td>
+                                <td class="text-center" th:text="${weather.humedadRelativa}"></td>
+                                <td class="text-center" th:text="${weather.sensTermica}"></td>
+                                <td class="text-center" th:text="${weather.temperatura}"></td>
+                                <td class="text-center" th:text="${weather.probNieve}"></td>
+                                <td class="text-center" th:text="${weather.nieve}"></td>
+                                <td class="text-center" th:text="${weather.probTormenta}"></td>
+                                <td class="text-center" th:text="${weather.probPrecipitacion}"></td>
+                                <td class="text-center" th:text="${weather.precipitacion}"></td>
+                                <td class="text-center" th:text="${T(com.learning.learning.commons.enums.EstadoCieloEnum).getByCode({weather.estadoCielo})}"></td>
+                                <td class="text-center" th:text="${weather.viento}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm-12 mt-5">
+                    <a href="/listar" class="btn btn-dark btn-lg">Listado de Datos </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

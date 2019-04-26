@@ -74,7 +74,7 @@ public enum EstadoCieloEnum {
         return code;
     }
 
-    public static EstadoCieloEnum get(Integer code) {
+    public static EstadoCieloEnum getByCode(Integer code) {
         for (EstadoCieloEnum country : EstadoCieloEnum.values()) {
             if (country.getCode().equals(code)) {
                 return country;
@@ -83,7 +83,7 @@ public enum EstadoCieloEnum {
         return null;
     }
 
-    public static EstadoCieloEnum get(String description) {
+    public static EstadoCieloEnum getByDescription(String description) {
         for (EstadoCieloEnum country : EstadoCieloEnum.values()) {
             if (country.getDescription().equals(description)) {
                 return country;

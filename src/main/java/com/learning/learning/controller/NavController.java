@@ -45,6 +45,14 @@ public class NavController {
         mav.setViewName("update");
         return mav;
     }
+    
+    @GetMapping(value = "/detalle/{id}")
+    public ModelAndView detalle(@PathVariable("id") Long id) {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("weather", this.utilService.findWeatherById(id));
+        mav.setViewName("detalle");
+        return mav;
+    }
 
     @GetMapping(value = "/crear")
     public ModelAndView crear() {

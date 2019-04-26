@@ -102,7 +102,7 @@ public class OpenDataService {
     private int getDataCielo(List<ObjectDataAemet> data, LocalDateTime fecha) {
         for (ObjectDataAemet dataAemet : data) {
             if (dataAemet.getPeriodo().equals(fecha.format(f)) && dataAemet.getValue() != null) {
-                return EstadoCieloEnum.get(dataAemet.getDescripcion()).getCode();
+                return EstadoCieloEnum.getByDescription(dataAemet.getDescripcion()).getCode();
             }
         }
         return 0;
