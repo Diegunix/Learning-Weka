@@ -21,6 +21,6 @@ porcentaje de acierto.
 ### Claves
 En el proyecto hay scripts para crear las tablas necesarias e importar los datos básicos.
 Para poder utilizar el proyecto es necesario tener una apiKey de Aemet OpenData que sera configurada en el application.propeties. 
-Para obtener la apiKey ir a la web de [Aemet](https://opendata.aemet.es/centrodedescargas/inicio)
+Para obtener la apiKey ir a la web de [Aemet](https://opendata.aemet.es/centrodedescargas/inicio).
 
 ---
